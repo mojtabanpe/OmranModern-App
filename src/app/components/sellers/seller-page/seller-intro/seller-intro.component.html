@@ -1,0 +1,75 @@
+<div class="section row">
+  <div class="col-lg-3 col-md-6 text-center text-lg-right">
+    <div class="text-center d-flex flex-column">
+      <img src={{seller.image}}  class="img-fluid">
+      <h1 class="mt-0 text-center">{{seller.name}}</h1>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> محل فروشنده:       {{seller.addresses[0].city}}</p>
+    </div>
+    <div class="section-md-gray">
+      <p>شمااره تماس فروشنده: </p>
+      <p class="text-center text-lg-right" *ngFor="let phone of seller.phones">{{phone.number | persianNumber}}</p>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> سایت فروشنده:       {{seller.site}}</p>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> آادرس فروشنده:       {{seller.addresses[0].detail}}</p>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> ساعت کاری فروشنده:       {{seller.working_time.start | persianNumber}} الی {{seller.working_time.end | persianNumber}}</p>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 mt-md-4 pb-4">
+    <div class="h-100 w-100">
+      <h3 class="text-primary">معرفی کامل شرکت {{seller.name}}</h3>
+      <p class="text-secondary">{{seller.explain | htmlToPlaintext}}</p>
+      <div class="text-primary text-left">
+        ادامه مطلب >
+      </div>
+      <!-- <div class="d-flex justify-content-between mt-5">
+        <h3 class="text-primary">رزومه فروشنده:</h3>
+        <i class="far fa-file-pdf fa-4x text-success"></i>
+      </div> -->
+      <div class="guarantee d-none d-lg-block">
+        <hr>
+        <div class="d-flex justify-content-around">
+          <div class="d-flex align-items-center text-secondary">
+            <i class="fas fa-shuttle-van pl-1 fa-2x"></i>
+            <span class="small">حمل بار</span>
+          </div>
+          <div class="d-flex align-items-center text-secondary">
+            <i class="fas fa-shuttle-van pl-1 fa-2x"></i>
+            <span class="small">ضمانت اصل بودن کالا</span>
+          </div>
+          <div class="d-flex align-items-center text-secondary">
+            <i class="fas fa-shuttle-van pl-1 fa-2x"></i>
+            <span class="small">اجرا</span>
+          </div>
+          <div class="d-flex align-items-center text-secondary">
+            <i class="fas fa-shuttle-van pl-1 fa-2x"></i>
+            <span class="small">اجرا</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 customers-scores">
+    <div class="section scores text-secondary">
+      <h3>امتیاز کاربران</h3>
+      <div class="d-flex justify-content-between">
+        <p>{{seller.stars.average| persianNumber}} از ۵</p>
+        <span class="d-flex flex-row">
+          <i *ngFor="let index of generateRowIndexes(5);index as i" class=" fa-star text-warning" [ngClass]="(i <= seller.stars.average -0.5)? 'fas' : 'far'"></i>
+        </span>
+      </div>
+      <div class="">
+        <p>رضایت ازکالا : {{satisfaction|persianNumber}}٪</p>
+        <p>از مجموع {{seller.stars.stars.length | persianNumber}} رای</p>
+      </div>
+    </div>
+
+  </div>
+</div>

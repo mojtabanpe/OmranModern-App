@@ -1,0 +1,161 @@
+<div class="page-container">
+  <div class="d-md-none d-flex">
+    <div (click)="openGeneralFilterDialog()" class="w-50 section mr-0 mb-0 cursor-pointer">
+      <h3 class="text-info text-center">
+        <i class="fas fa-filter fa-2x"></i>
+        <span>فیلتر کردن پیشنهادات</span>
+      </h3>
+    </div>
+    <div (click)="openGeneralSortDialog()" class="w-50 section ml-0 mb-0 cursor-pointer">
+      <h3 class="text-info text-center">
+        <i class="fas fa-sort-amount-up fa-2x"></i>
+        <span>مرتب سازی بر اساس</span>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 pr-0 d-none d-md-block">
+      <div class="section position-relative">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+          <!-- This is the tree node template for leaf nodes -->
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+            <li class="mat-tree-node">
+              <!-- use a disabled button to provide padding for tree leaf -->
+              <button mat-icon-button disabled></button>
+              {{node.name}}
+            </li>
+          </mat-tree-node>
+          <!-- This is the tree node template for expandable nodes -->
+          <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+            <li>
+              <div class="mat-tree-node">
+                <button mat-icon-button matTreeNodeToggle
+                        [attr.aria-label]="'Toggle ' + node.name">
+
+                  <mat-icon>
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_left'}}
+                  </mat-icon>
+
+                </button>
+                {{node.name}}
+              </div>
+              <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+                <ng-container matTreeNodeOutlet></ng-container>
+              </ul>
+            </li>
+          </mat-nested-tree-node>
+        </mat-tree>
+        <div class="all-category-absolute-bottom">
+          <button class="btn btn-light btn-block text-secondary"><small>مشاهده همه دسته بندی ها <i class="fas fa-angle-double-down"></i></small></button>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="text-info">
+          <i class="fas fa-filter"></i>
+          <span>فیلتر کردن پیشنهادات</span>
+        </h3>
+        <hr>
+        <h4>محدوده قیمت مورد نظر</h4>
+        <!-- <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider> -->
+
+        <h4 class="mt-5">برند</h4>
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label class="small">برند مورد نظر خود را انتخاب کنید</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let brand of brands" [value]="brand.value">
+              {{brand.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <h4 class="mt-1">کیفیت</h4>
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label class="small">کیفیت مورد نظر خود را انتخاب کنید</mat-label>
+          <mat-select (click)="goToRemoveClass()">
+            <mat-option *ngFor="let brand of brands" [value]="brand.value">
+              {{brand.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="d-flex pt-5">
+          <button class="btn btn-info mx-auto">فیلتر کردن</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-9 px-0">
+      <div class="d-none d-md-block section">
+        <div class="d-flex justify-content-center">
+          <span class="d-flex align-items-center text-secondary ml-3"><i class="fas fa-sort-amount-up fa-2x ml-1"></i>مرتب سازی بر اساس</span>
+          <button #buttonRef1 class="btn btn-sm" (click)="sort(buttonRef1)">حداکثر قیمت </button>
+          <button #buttonRef2 class="btn btn-sm" (click)="sort(buttonRef2)">حداقل قیمت</button>
+          <button #buttonRef3 class="btn btn-sm active" (click)="sort(buttonRef3)">کیفیت کالا</button>
+        </div>
+      </div>
+      <div class="section-md">
+        <div class="row">
+          <div *ngFor="let presentProduct of presentedProducts" class="row section-sm col-12 my-2 my-md-5">
+            <div class="col-12 col-md-6 d-flex flex-md-column justify-content-around align-items-center">
+              <img src={{presentProduct.product.url}} class="img-fluid preMD-w40">
+              <div class="d-flex flex-column text-mobile-small">
+                <p class="text-secondary mt-2">{{presentProduct.product.name}}</p>
+                <p>قیمت از {{presentProduct.product.minPrice}} تومان تا {{presentProduct.product.maxprice}} تومان</p>
+                <p>{{presentProduct.marketers.length}} فروشنده</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>فروشنده</th>
+                    <th>قیمت هرکیلوگرم</th>
+                    <th>حداکثر تخفیف</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let marketer of presentProduct.marketers">
+                    <td>{{marketer.name}}</td>
+                    <td>{{marketer.pricePerUnit}} تومان</td>
+                    <td>{{marketer.disscount}}درصد</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          <button class="btn btn-info mr-auto btn-sm ml-0 ml-md-5">مشاهده فروشنده های بیشتر٬ تخفیف خرید عمده یا نقدی</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section mx-0 px-3 mt-3 services">
+    <h2 class="text-info">خدمات</h2>
+    <hr>
+    <carousel [cellsToShow]="4" class="showArrows d-none d-md-block">
+      <div class="carousel-cell d-flex flex-column  border-left" *ngFor="let service of realatedServices">
+        <h4 class="text-center">{{service.title}}</h4>
+          <img [src]= service.picture class="container-fluid" width="70%">
+          <p class="text-primary mt-1">قیمت هر {{service.unit}}: {{service.price}}</p>
+      </div>
+    </carousel>
+    <carousel [cellsToShow]="1" class="showArrows d-md-none">
+      <div class="carousel-cell d-flex flex-column  border-left" *ngFor="let service of realatedServices">
+        <h4 class="text-center">{{service.title}}</h4>
+          <img [src]= service.picture class="container-fluid" width="70%">
+          <p class="text-primary mt-1">قیمت هر {{service.unit}}: {{service.price}}</p>
+      </div>
+    </carousel>
+  </div>
+  <div class="section row">
+    <div class="col-md-4 d-none d-md-block">
+      <img src={{mainPictureUrl}} class="img-fluid">
+    </div>
+    <div class="col-md-8 col-12">
+      <h3>{{mainProducteName}}</h3>
+      <p class="text-justify text-secondary">از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش
+        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد. معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا
+         صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد
+         و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است. از آنجایی که طراحان عموما نویسنده متن نیستند و وظیفه
+         رعایت حق تکثیر متون را ندارند و در همان حال کار آنها به نوعی وابسته به متن می‌باشد آنها با استفاده از محتویات
+         ساختگی، صفحه گرافیکی خود را صفحه‌آرایی می‌کنند تا مرحله طراحی و صفحه‌بندی را به پایان برند.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="form-container">
+  <div class="section form-layout position-relative">
+    <h3>ورود/ثبت نام</h3>
+    <hr>
+    <form [formGroup]="loginForm" (ngSubmit)= "login()">
+      <div class="form-content go-a-bit-top">
+        <div class="form-group">
+          <label>شماره موبایل یا ایمیل خود را وارد کنید</label>
+          <input formControlName="username" class="form-control text-center" placeholder="شماره موبایل یا ایمیل">
+        </div>
+        <div class="form-group">
+          <label>رمز عبور</label>
+          <input formControlName="password" class="form-control text-center" type="password">
+        </div>
+        <a routerLink="./forget" class="alert-small">رمز عبور خود را فراموش کرده ام!</a>
+        <mat-checkbox formControlName="rememberMe" class="text-secondary small d-block mt-3">
+          مرا به خاطر بسپار
+        </mat-checkbox>
+        <button type="submit" class="btn btn-info btn-block">ورود به سایت</button>
+      </div>
+    </form>
+    <div class="login-footer">
+      <p routerLink="/auth/register">کاربر جدید هستید؟ <a class="link-small">ثبت نام در عمران مدرن</a></p>
+    </div>
+  </div>
+</div>

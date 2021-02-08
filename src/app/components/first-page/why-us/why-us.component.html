@@ -1,0 +1,61 @@
+<app-why-us-header></app-why-us-header>
+<div class="row d-none d-md-flex justify-content-center">
+  <div class="right-sep justify-content-md-end order-0" (mouseenter)= "toggleVisibility(0)" (mouseleave)= "toggleVisibility(0)">
+    <img [ngClass]="visible[0]? 'vis' : 'hid'" src="../../../assets/img/puzzleSeprate/1.svg">
+    <div class="hideDives top-right" [ngClass]="visible[0]? 'hid' : 'vis'" >
+      <button class="btn btn-primary">دست از سرم وردار</button>
+    </div>
+  </div>
+  <div class="left-sep justify-content-md-start order-4 order-md-1" (mouseenter)= "toggleVisibility(1)" (mouseleave)= "toggleVisibility(1)">
+    <img [ngClass]="visible[1]? 'vis' : 'hid'" src="../../../assets/img/puzzleSeprate/2.svg">
+    <div class="hideDives top-left" [ngClass]="visible[1]? 'hid' : 'vis'" >
+        <button class="btn btn-primary">دست از سرم وردار</button>
+    </div>
+  </div>
+  <div class="right-sep justify-content-md-end order-1 order-md-2" (mouseenter)= "toggleVisibility(2)" (mouseleave)= "toggleVisibility(2)">
+      <img class="w-96" [ngClass]="visible[2]? 'vis' : 'hid'" src="../../../assets/img/puzzleSeprate/3.svg">
+      <div class="hideDives no-curve" [ngClass]="visible[2]? 'hid' : 'vis'" >
+        <button class="btn btn-primary">دست از سرم وردار</button>
+      </div>
+  </div>
+  <div class="left-sep justify-content-md-start order-5 order-md-3" (mouseenter)= "toggleVisibility(3)" (mouseleave)= "toggleVisibility(3)">
+      <img class="w-96" [ngClass]="visible[3]? 'vis' : 'hid'" src="../../../assets/img/puzzleSeprate/4.svg">
+      <div class="hideDives no-curve" [ngClass]="visible[3]? 'hid' : 'vis'" >
+          <button class="btn btn-primary">دست از سرم وردار</button>
+      </div>
+  </div>
+  <div class="right-sep justify-content-md-end order-2 order-md-4" (mouseenter)= "toggleVisibility(4)" (mouseleave)= "toggleVisibility(4)">
+      <img [ngClass]="visible[4]? 'vis' : 'hid'" src="../../../assets/img/puzzleSeprate/5.svg">
+      <div class="hideDives no-curve" [ngClass]="visible[4]? 'hid' : 'vis'" >
+        <button class="btn btn-primary">دست از سرم وردار</button>
+      </div>
+  </div>
+  <div class="left-sep justify-content-md-start order-6 order-md-5" (mouseenter)= "toggleVisibility(5)" (mouseleave)= "toggleVisibility(5)">
+      <img [ngClass]="visible[5]? 'vis' : 'hid'" src="../../../assets/img/puzzleSeprate/6.svg">
+      <div class="hideDives no-curve" [ngClass]="visible[5]? 'hid' : 'vis'" >
+          <button class="btn btn-primary">دست از سرم وردار</button>
+      </div>
+  </div>
+  <div class="right-sep justify-content-md-end order-3 order-md-6" (mouseenter)= "toggleVisibility(6)" (mouseleave)= "toggleVisibility(6)">
+      <img [ngClass]="visible[6]? 'vis' : 'hid'" src="../../../assets/img/puzzleSeprate/7.svg">
+      <div class="hideDives bottom-right" [ngClass]="visible[6]? 'hid' : 'vis'" >
+        <button class="btn btn-primary">دست از سرم وردار</button>
+      </div>
+  </div>
+  <div class="left-sep justify-content-md-start order-7 order-md-7" (mouseenter)= "toggleVisibility(7)" (mouseleave)= "toggleVisibility(7)">
+      <img [ngClass]="visible[7]? 'vis' : 'hid'" src="../../../assets/img/puzzleSeprate/8.svg">
+      <div class="hideDives bottom-left" [ngClass]="visible[7]? 'hid' : 'vis'" >
+          <button class="btn btn-primary">دست از سرم وردار</button>
+      </div>
+  </div>
+</div>
+<div class="small-resolution d-md-none">
+  <img src="../../../../assets/img/mobilepuzzle/1.svg">
+  <img src="../../../../assets/img/mobilepuzzle/2.svg">
+  <img src="../../../../assets/img/mobilepuzzle/3.svg">
+  <img src="../../../../assets/img/mobilepuzzle/4.svg">
+  <img src="../../../../assets/img/mobilepuzzle/5.svg">
+  <img src="../../../../assets/img/mobilepuzzle/6.svg">
+  <img src="../../../../assets/img/mobilepuzzle/7.svg">
+  <img src="../../../../assets/img/mobilepuzzle/8.svg">
+</div>

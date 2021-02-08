@@ -1,0 +1,28 @@
+div.d-flex {
+  width: 100%;
+  position: absolute;
+  top: 13%;
+}
+
+ .btn {
+   text-align: right;
+   max-width: 230px;
+   padding-top: .5em;
+   padding-bottom: .5em;
+   padding: .2em;
+   margin-right: .5em;
+ }
+.fa-2x {
+  width: 1.5em;
+}
+
+.tuneSVG {
+  background: none !important;
+  width: 4em;
+}
+.active {
+  background-color: #49aab1;
+}
+.notActive {
+  background-color: #e7eff1;
+}

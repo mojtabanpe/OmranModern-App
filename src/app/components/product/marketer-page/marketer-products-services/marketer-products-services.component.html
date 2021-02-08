@@ -1,0 +1,59 @@
+<div class="section mt-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3 class="text-info mb-0">کالاها</h3>
+   <div class="search-field" [ngClass]="{'get-border': searchShadow}">
+    <div class="input-group-pre">
+      <a class="cursor-pointer"><img src="../../../../assets/img/icons/search.png" class="img-icon"></a>
+   </div>
+   <input type="text" (focus)="searchShadow = true" (focusout)="searchShadow = false" placeholder="جستجو ..." aria-label="search" class="serach-input">
+   </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-6 mb-3" *ngFor="let product of marketerProducts" >
+      <div class="card">
+        <img src={{product.picture}} class="card-img-top">
+        <div class="card-footer">
+          <p>{{product.name}}</p>
+          <p class="text-primary mt-1">قیمت هر {{product.unit}}: {{product.price}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <carousel [cellsToShow]="4" class="showArrows d-none d-md-block">
+    <div class="carousel-cell border-left" *ngFor="let product of marketerProducts">
+        <img [src]= product.picture>
+        <p class="text-primary mt-1">قیمت هر {{product.unit}}: {{product.price}}</p>
+    </div>
+</carousel>
+<carousel [cellsToShow]="1" class="showArrows d-md-none">
+  <div class="carousel-cell border-left" *ngFor="let product of marketerProducts">
+      <img [src]= product.picture>
+      <p class="text-primary mt-1">قیمت هر {{product.unit}}: {{product.price}}</p>
+  </div>
+</carousel> -->
+</div>
+
+<div class="section mt-3 services">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3 class="text-info mb-0">خدمات</h3>
+    <a class="d-flex align-items-center text-secondary d-md-none">مشاهده همه خدمات<mat-icon>chevron_left</mat-icon></a>
+  </div>
+  <hr>
+  <carousel [cellsToShow]="5" class="showArrows d-none d-md-block">
+    <div class="carousel-cell" *ngFor="let service of marketerServices">
+      <div class="item-container" (mouseenter)="service.hover = true" (mouseleave)="service.hover = false" [ngClass]="{'get-shadow': service.hover,'remove-shadow': !service.hover}">
+        <h4 class="text-center">{{service.title}}</h4>
+        <img [src]= service.picture>
+        <p class="text-primary mt-1">قیمت هر {{service.unit}}: {{service.price}}</p>
+      </div>
+    </div>
+  </carousel>
+<carousel [cellsToShow]="1" class="showArrows d-md-none">
+  <div class="carousel-cell" *ngFor="let service of marketerServices">
+    <h4 class="text-center">{{service.title}}</h4>
+      <img [src]= service.picture>
+      <p class="text-primary mt-1">قیمت هر {{service.unit}}: {{service.price}}</p>
+  </div>
+</carousel>
+</div>

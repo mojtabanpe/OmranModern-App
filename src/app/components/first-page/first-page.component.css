@@ -1,0 +1,53 @@
+app-header {
+  position: sticky;
+  z-index: 1;
+  height: 14rem;
+}
+.content {
+  position: relative;
+}
+app-co-workers {
+ position: relative;
+ top: 1em;
+ height: 660px;
+}
+
+app-apply-your-work {
+  position: relative;
+  /* top: 25rem; */
+  direction: ltr !important;
+  text-align: left !important;
+}
+app-why-us {
+  position: relative;
+  /* top: 10em; */
+}
+
+app-second-why-us {
+  position: relative;
+  /* top: 10em; */
+  width: 90%;
+  margin: auto;
+}
+
+
+
+app-footer {
+  position: relative;
+  top: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  app-why-us {
+    top: -15rem !important;
+  }
+  app-second-why-us {
+    top: -10rem !important;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  app-footer {
+    top: 40rem !important;
+  }
+}

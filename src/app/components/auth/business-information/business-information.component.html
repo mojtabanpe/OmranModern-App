@@ -1,0 +1,59 @@
+<div class="form-container auto-AR">
+  <div class="section">
+    <h3>اطلاعات</h3>
+    <hr>
+    <div class="form-content">
+      <div class="form-group">
+        <label>نام و نام خانوادگی دارنده کسب و کار</label>
+        <input class="form-control small">
+      </div>
+      <label>استان</label>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label *ngIf="province.value === undefined">...</mat-label>
+        <mat-select #province>
+          <mat-option *ngFor="let province of provinces" [value]="province.value">
+            {{province.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <label>شهرستان</label>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label *ngIf="city.value === undefined">...</mat-label>
+        <mat-select #city>
+          <mat-option *ngFor="let city of cities" [value]="city.value">
+            {{city.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <label>منطقه محل فعالیت</label>
+      <ng-multiselect-dropdown
+        [placeholder]="'custom placeholder'"
+        [settings]="dropdownSettings"
+        [data]="regions"
+        [(ngModel)]="selectedRegions"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)">
+      </ng-multiselect-dropdown>
+
+      <label class="d-block mt-4">ارائه دهنده خدمات هستید؟</label>
+      <mat-button-toggle-group name="services">
+        <mat-button-toggle value="true">بله</mat-button-toggle>
+        <mat-button-toggle value="false">خیر</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <label class="d-block mt-4">ارائه دهنده کالا هستید؟</label>
+      <mat-button-toggle-group name="products">
+        <mat-button-toggle value="true">بله</mat-button-toggle>
+        <mat-button-toggle value="false">خیر</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <div class="mt-5 w-100">
+        <button class="btn btn-success w-50">ثبت</button>
+        <button class="btn btn-outline-danger mr-5">بازگشت</button>
+      </div>
+    </div>
+  </div>
+</div>
+

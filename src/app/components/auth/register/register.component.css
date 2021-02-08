@@ -1,0 +1,9 @@
+.register-btn-container {
+  position: absolute;
+  text-align: center !important;
+  bottom: 1rem;
+  right: 1rem;
+  left: 1rem;
+  width: 80%;
+  margin: auto;
+}

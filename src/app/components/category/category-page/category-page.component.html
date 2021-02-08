@@ -1,0 +1,154 @@
+<div class="page-container">
+  <div class="d-md-none d-flex">
+    <div (click)="openGeneralFilterDialog()" class="w-50 section mr-0 mb-0 cursor-pointer">
+      <h3 class="text-info text-center">
+        <i class="fas fa-filter fa-2x"></i>
+        <span>فیلتر کردن پیشنهادات</span>
+      </h3>
+    </div>
+    <div (click)="openGeneralSortDialog()" class="w-50 section ml-0 mb-0 cursor-pointer">
+      <h3 class="text-info text-center">
+        <i class="fas fa-sort-amount-up fa-2x"></i>
+        <span>مرتب سازی بر اساس</span>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 pr-0 d-none d-md-block">
+      <div class="section position-relative">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+          <!-- This is the tree node template for leaf nodes -->
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+            <li class="mat-tree-node">
+              <!-- use a disabled button to provide padding for tree leaf -->
+              <button mat-icon-button disabled></button>
+              {{node.name}}
+            </li>
+          </mat-tree-node>
+          <!-- This is the tree node template for expandable nodes -->
+          <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+            <li>
+              <div class="mat-tree-node">
+                <button mat-icon-button matTreeNodeToggle
+                        [attr.aria-label]="'Toggle ' + node.name">
+
+                  <mat-icon>
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_left'}}
+                  </mat-icon>
+
+                </button>
+                {{node.name}}
+              </div>
+              <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+                <ng-container matTreeNodeOutlet></ng-container>
+              </ul>
+            </li>
+          </mat-nested-tree-node>
+        </mat-tree>
+        <div class="all-category-absolute-bottom">
+          <button class="btn btn-light btn-block text-secondary"><small>مشاهده همه دسته بندی ها <i class="fas fa-angle-double-down"></i></small></button>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="text-info">
+          <i class="fas fa-filter"></i>
+          <span>فیلتر کردن پیشنهادات</span>
+        </h3>
+        <hr>
+        <h4>محدوده قیمت مورد نظر</h4>
+        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+
+        <h4 class="mt-5">برند</h4>
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label class="small">برند مورد نظر خود را انتخاب کنید</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let brand of brands" [value]="brand.value">
+              {{brand.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <h4 class="mt-1">کیفیت</h4>
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label class="small">کیفیت مورد نظر خود را انتخاب کنید</mat-label>
+          <mat-select (click)="goToRemoveClass()">
+            <mat-option *ngFor="let brand of brands" [value]="brand.value">
+              {{brand.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="d-flex pt-5">
+          <button class="btn btn-info mx-auto">فیلتر کردن</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-9 px-0">
+      <div class="d-none d-md-block section">
+        <div class="d-flex justify-content-center">
+          <span class="d-flex align-items-center text-secondary ml-3"><i class="fas fa-sort-amount-up fa-2x ml-1"></i>مرتب سازی بر اساس</span>
+          <button #buttonRef1 class="btn btn-sm" (click)="sort(buttonRef1)">حداکثر قیمت </button>
+          <button #buttonRef2 class="btn btn-sm" (click)="sort(buttonRef2)">حداقل قیمت</button>
+          <button #buttonRef3 class="btn btn-sm active" (click)="sort(buttonRef3)">کیفیت کالا</button>
+        </div>
+      </div>
+      <div class="section-md">
+        <div class="row">
+          <div *ngFor="let product of pageDetails" class="row section-sm col-12 my-2 my-md-5">
+            <div class="col-12 col-md-6 d-flex flex-md-column justify-content-around align-items-center">
+              <img src={{product.mother.image}} class="img-fluid preMD-w40">
+              <div class="d-flex flex-column text-mobile-small">
+                <p class="text-secondary mt-2">{{product.mother.name}}</p>
+                <p>قیمت از {{product.mother.min | persianNumber}} تومان تا {{product.mother.max | persianNumber}} تومان</p>
+                <p>{{product.sellers.length | persianNumber}} فروشنده</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>فروشنده</th>
+                    <th>قیمت هر واحد</th>
+                    <th>حداکثر تخفیف</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let seller of product.sellers">
+                    <td>{{seller.name}}</td>
+                    <td>{{seller.price|persianNumber}} تومان</td>
+                    <td>{{seller.discount|persianNumber}}درصد</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          <button class="btn btn-info mr-auto btn-sm ml-0 ml-md-5">مشاهده فروشنده های بیشتر٬ تخفیف خرید عمده یا نقدی</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section mx-0 px-3 mt-3 services" *ngIf="initializedRelated">
+    <h2 class="text-info">خدمات</h2>
+    <hr>
+    <carousel [cellsToShow]="4" class="showArrows d-none d-md-block">
+      <div class="carousel-cell d-flex flex-column  border-left" *ngFor="let service of relatedService">
+        <h4 class="text-center">{{service.item_name}}</h4>
+          <img [src]= 'service.image' class="container-fluid" width="70%">
+      </div>
+    </carousel>
+    <carousel [cellsToShow]="1" class="showArrows d-md-none">
+      <div class="carousel-cell d-flex flex-column  border-left" *ngFor="let service of relatedService">
+        <h4 class="text-center">{{service.item_name}}</h4>
+          <img [src]= 'service.image' class="container-fluid" width="70%">
+      </div>
+    </carousel>
+  </div>
+  <div class="section row">
+    <div class="col-md-4 d-none d-md-block">
+      <img src={{category.image}} class="img-fluid">
+    </div>
+    <div class="col-md-8 col-12">
+      <h3>{{mainProducteName}}</h3>
+      <p class="text-justify text-secondary">{{category.explain|htmlToPlaintext}}</p>
+    </div>
+  </div>
+</div>

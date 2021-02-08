@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h3 class="text-info mb-0">اطلاعات فروشنده</h3>
+  <a class="d-flex align-items-center text-secondary" (click)="onNoClick()">بازگشت<mat-icon>chevron_left</mat-icon></a>
+</div>
+<hr>
+<div class="section pt-3" *ngIf="shod">
+  <h3 class="text-info">{{data.marketer.name}}</h3>
+  <hr>
+  <h3>اطلاعات تماس</h3>
+  <div class="px-2">
+    <div>
+      <i class="fas fa-plus-circle"></i>
+      افزودن کالا به پروژه
+    </div>
+    <div>
+      <i class="fas fa-phone"></i>
+      دریافت شماره تماس
+    </div>
+    <div>
+      <i class="fas fa-map-marker-alt"></i>
+      {{data.contact.address}}
+    </div>
+  </div>
+  <hr>
+  <h3>حمل/اجرا/تجهبزات</h3>
+  <div class="px-2">
+    <div>
+      <span>قیمت حمل: </span>
+      <span>{{data.transport.transportPrice}}</span>
+    </div>
+    <div>
+      <span>وسیله حمل: </span>
+      <span>{{data.transport.transportCar}}</span>
+    </div>
+    <div>
+      <span>اجرا دارد؟: </span>
+      <span>{{data.transport.execute}}</span>
+    </div>
+  </div>
+  <hr>
+  <h3>شرایط</h3>
+  <div class="px-2">
+    <div class="badge badge-danger">
+      <span>تخفیف {{data.states.disscount}} درصد</span>
+    </div>
+    <div>
+      <span>آخرین بروزرسانی: </span>
+      <span>{{data.states.lastUpdate}}</span>
+    </div>
+    <div>
+      <span>زمان آماده سازی: </span>
+      <span>{{data.states.preparationTime}}</span>
+    </div>
+    <div>
+      <span>شرکت حمل: </span>
+      <span>{{data.states.transportCompany}}</span>
+    </div>
+  </div>
+  <hr>
+  <h3>قیمت</h3>
+  <div class="px-2">
+    <div>
+      <span>قیمت هر کیلوگرم: </span>
+      <span>{{data.price.pricePerUnit}} تومان</span>
+    </div>
+    <div>
+      <span>قیمت کل: </span>
+      <span>{{data.price.totalPrice}} تومان</span>
+    </div>
+    <button class="btn btn-outline-danger btn-sm">اطلاع عدم بروز بودن قیمت</button>
+  </div>
+  <hr>
+
+</div>

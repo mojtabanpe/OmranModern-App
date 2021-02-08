@@ -1,0 +1,8 @@
+carousel {
+  z-index: 0;
+  height: 100% !important;
+}
+.moj-containe-carousel {
+  height: 100%;
+  width: 100%;
+}

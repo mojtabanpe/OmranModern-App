@@ -1,0 +1,66 @@
+div img {
+  width: 30rem;
+  height: 11rem;
+}
+
+.left-sep, .right-sep  {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 30rem;
+  height: 11rem;
+}
+.w-96 {
+  width: 96% !important;
+}
+.top-right {
+  background-image: url('../../../../assets/img/puzzleSeprate/back/balarast.svg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.top-left {
+  background-image: url('../../../../assets/img/puzzleSeprate/back/balachap.svg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bottom-right {
+  background-image: url('../../../../assets/img/puzzleSeprate/back/payinrast.svg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bottom-left {
+  background-image: url('../../../../assets/img/puzzleSeprate/back/payinchap.svg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.no-curve {
+  background-image: url('../../../../assets/img/puzzleSeprate/back/saf.svg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hid {
+  display: none;
+}
+
+.vis {
+  display: flex;
+}
+
+.right-sep .hideDives {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-sep .hideDives {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.small-resolution img{
+  width: 90%;
+}
+.small-resolution {
+  text-align: center !important;
+}

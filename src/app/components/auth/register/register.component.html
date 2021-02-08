@@ -1,0 +1,38 @@
+<div class="form-container">
+  <div class="section form-layout position-relative">
+    <h3>ثبت نام</h3>
+    <hr>
+    <div class="form-content">
+      <div class="form-group mt-5" *ngIf="step === 1">
+        <label>شماره موبایل یا ایمیل خود را وارد کنید</label>
+        <input class="form-control text-center" placeholder="شماره موبایل یا ایمیل" [(ngModel)]="phoneOrEmail">
+      </div>
+
+      <div class="form-group mt-5" *ngIf="step === 2">
+        <label>کد فعالسازی</label>
+        <input class="form-control text-center" placeholder="- - - - - -" [(ngModel)]="code">
+      </div>
+
+      <div *ngIf="step === 3">
+        <div class="form-group">
+          <!-- <label>نام و نام خانوادگی</label>
+          <input class="form-control text-center" [(ngModel)]="name"> -->
+          <label>رمز عبور</label>
+          <input class="form-control text-center" type="password" [(ngModel)]="password">
+          <mat-checkbox [(ngModel)]="remember_me" class="text-secondary small d-block mt-3">
+            مرا به خاطر بسپار
+          </mat-checkbox>
+        </div>
+      </div>
+
+
+
+      <button (click)="getCode()" class="btn btn-info btn-block" *ngIf="step === 1">دریافت کد</button>
+      <button (click)="verifyCode()"class="btn btn-info btn-block" *ngIf="step === 2">تایید کد</button>
+    </div>
+    <div class="register-btn-container" *ngIf="step === 3">
+      <button class="btn btn-info w-100 mb-2" (click)="submit()">ثبت نام</button>
+      <div class="alert alert-warning small">ثبت نام در عمران مدرن به معنی موافقت با شرایط استفاده از عمران مدرن است! </div>
+    </div>
+  </div>
+</div>

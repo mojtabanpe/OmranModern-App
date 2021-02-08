@@ -1,0 +1,14 @@
+<div class="section mt-4">
+  <h3 class="text-info">نمونه کارها(پروژه)</h3>
+  <hr>
+  <div class="row">
+    <div class="work-sample" *ngFor="let sample of workSamples">
+      <div class="card">
+        <img src={{sample.image}} class="card-img-top">
+        <div class="card-footer">
+        {{sample.title}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

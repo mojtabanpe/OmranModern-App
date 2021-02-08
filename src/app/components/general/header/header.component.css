@@ -1,0 +1,121 @@
+#header-top {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+}
+
+a {
+  color: white !important;
+}
+.sticky {
+  background-color: #2b5670;
+  position: fixed !important;
+  height: 5rem !important;
+}
+.header-svg {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.logo-container {
+  max-height: 80px;
+  padding-top: 5px;
+  display: flex;
+  color: white;
+}
+.logo-container h2,p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+
+.logo {
+  overflow: hidden;
+  padding-left: 1em;
+}
+
+.search-field {
+  width: 35%;
+  margin-top: 10px;
+  display: flex;
+}
+
+.search-field > input {
+  width: 65%;
+  padding: 1em;
+  outline: none;
+
+}
+
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.login-header div {
+  text-align: center;
+  margin-top: .5em;
+}
+
+.login-header a {
+  padding: .5em;
+  font-size: 1.1em;
+}
+
+/* botoom header */
+#header-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 9em;
+  width: 100%;
+}
+
+.my-nav {
+  padding-top: 1rem;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  width: 38rem;
+}
+.my-nav li {
+  font-weight: normal;
+}
+
+.shadow-svg {
+  box-shadow: 10px 30px black;
+}
+
+@media only screen and (max-width: 1300px) {
+  .header-svg {
+    display: none !important;
+  }
+  #header-top {
+    height: 7rem;
+    background-color: #2b5670 !important;
+    position: inherit;
+  }
+  #header-bottom {
+    height: 3rem;
+    background-color: #ebeff3 !important;
+    position: inherit;
+    top: 0;
+  }
+
+  .search-field {
+    height: 3.5rem;
+    margin-top: 0;
+  }
+  .logo-container {
+    max-height: 120px;
+  }
+
+}

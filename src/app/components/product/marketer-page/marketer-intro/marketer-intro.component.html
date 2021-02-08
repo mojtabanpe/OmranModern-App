@@ -1,0 +1,81 @@
+<div class="section row">
+  <div class="col-lg-3 col-md-6 text-center text-lg-right">
+    <div class="text-center position-relative">
+      <img src={{marketer.logo}}  class="img-fluid">
+      <h1 class="mt-0 text-center position-relative" style="top: -1rem;">{{marketer.name}}</h1>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> محل فروشنده:       {{marketer.location}}</p>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> شمااره تماس فروشنده:       {{marketer.phone}}</p>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> سایت فروشنده:       {{marketer.site}}</p>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> آادرس فروشنده:       {{marketer.address}}</p>
+    </div>
+    <div class="section-md-gray">
+      <p class="text-center text-lg-right"> ساعت کاری فروشنده:       {{marketer.beginWorkingTime}} الی {{marketer.endWorkingTime}}</p>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 mt-md-4 pb-4">
+    <div class="h-100 w-100">
+      <h3 class="text-primary">معرفی کامل شرکت {{marketer.name}}</h3>
+      <p class="text-secondary">بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد. معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته</p>
+      <div class="text-primary text-left">
+        ادامه مطلب >
+      </div>
+      <div class="d-flex justify-content-between mt-5">
+        <h3 class="text-primary">رزومه فروشنده:</h3>
+        <i class="far fa-file-pdf fa-4x text-success"></i>
+      </div>
+      <div class="guarantee d-none d-lg-block">
+        <hr>
+        <div class="d-flex justify-content-around">
+          <div class="d-flex align-items-center text-secondary">
+            <i class="fas fa-shuttle-van pl-1 fa-2x"></i>
+            <span class="small">حمل بار</span>
+          </div>
+          <div class="d-flex align-items-center text-secondary">
+            <i class="fas fa-shuttle-van pl-1 fa-2x"></i>
+            <span class="small">ضمانت اصل بودن کالا</span>
+          </div>
+          <div class="d-flex align-items-center text-secondary">
+            <i class="fas fa-shuttle-van pl-1 fa-2x"></i>
+            <span class="small">اجرا</span>
+          </div>
+          <div class="d-flex align-items-center text-secondary">
+            <i class="fas fa-shuttle-van pl-1 fa-2x"></i>
+            <span class="small">اجرا</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 customers-scores">
+    <div class="section scores text-secondary">
+      <h3>امتیااز کاربران</h3>
+      <div class="d-flex justify-content-between">
+        <p>{{marketerRating.score}} از ۵</p>
+        <span class="d-flex flex-row">
+          <i *ngFor="let index of generateRowIndexes(5);index as i" class=" fa-star text-warning" [ngClass]="(i < marketerRating.score -1)? 'fas' : 'far'"></i>
+        </span>
+      </div>
+      <div class="">
+        <p>رضایت ازکالا : {{marketerRating.satisfaction}}٪</p>
+        <p>از مجموع {{marketerRating.votes}} رای</p>
+      </div>
+    </div>
+    <!-- <h3>زمینه های فعالیت</h3>
+    <hr>
+    <div class="d-flex justify-content-start flex-wrap">
+      <div class="large-badge badge badge-secondary m-1" *ngFor="let activity of activityFields">
+        <span>{{activity}}</span>
+      </div>
+    </div> -->
+
+  </div>
+</div>

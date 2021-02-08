@@ -1,0 +1,41 @@
+.right-side h2 {
+  transform: rotate(90deg);
+  color: #16747a;
+  font-weight: bold;
+}
+.left-side h2 {
+  transform: rotate(-90deg);
+  color: #16747a;
+}
+.rotated {
+  width: 20em;
+  position: relative;
+  left: 8.7em;
+  top: 11em;
+}
+
+h2 {
+  color: #49aab1;
+}
+
+.jumbotron * {
+  text-align: center;
+}
+
+.jumbotron {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.text-center h2 {
+  text-align: center !important;
+}
+.text-center p {
+  text-align: justify !important;
+}
+.head-of-jumbotron {
+  position: absolute;
+  top: -43px;
+  right: 8%;
+  width: 200px;
+}

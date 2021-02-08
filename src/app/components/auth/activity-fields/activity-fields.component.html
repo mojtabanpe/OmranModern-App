@@ -1,0 +1,42 @@
+<div class="form-container auto-AR">
+  <div class="section">
+    <h3>زمینه های فعالیت</h3>
+    <hr>
+    <div class="form-content">
+      <button *ngFor="let mainActivity of mainActivityButtons;index as i" (click)="showSubActivities(i, $event)" class="btn btn-block btn-outline-info btn-sm my-3 px-5">{{mainActivity}}</button>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" *ngIf="visibleTree === 5">
+        <!-- This is the tree node template for leaf nodes -->
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+          <li class="mat-tree-node">
+            <!-- use a disabled button to provide padding for tree leaf -->
+            <mat-checkbox>{{node.name}}</mat-checkbox>
+
+          </li>
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+          <li>
+            <div class="mat-tree-node">
+              <button class="mat-icon-button" mat-icon-button matTreeNodeToggle
+                      [attr.aria-label]="'Toggle ' + node.name">
+                      <mat-icon class="text-info">
+                        {{treeControl.isExpanded(node) ? 'remove_circle_outline' : 'add_circle_outline'}}
+                      </mat-icon>
+              </button>
+              {{node.name}}
+            </div>
+            <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+              <ng-container matTreeNodeOutlet></ng-container>
+            </ul>
+          </li>
+        </mat-nested-tree-node>
+      </mat-tree>
+
+      <div class="mt-5 w-100">
+        <button class="btn btn-success btn-block w-75 mx-auto">ثبت</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

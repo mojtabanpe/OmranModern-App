@@ -1,0 +1,19 @@
+.fa-file-pdf {
+  cursor: pointer;
+}
+.guarantee {
+  position: absolute;
+  bottom: 2rem;
+  width: 90%;
+}
+.scores {
+  background-color: #e1ebec;
+}
+.large-badge {
+  height: 30px;
+  align-items: center;
+  display: flex;
+}
+.customers-scores {
+  margin-top: 30px;
+}

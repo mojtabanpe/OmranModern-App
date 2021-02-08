@@ -1,0 +1,24 @@
+.login-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  text-align: center;
+  background-color: rgb(221, 211, 211);
+  font-size: .7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 4rem;
+}
+
+.go-a-bit-top {
+  position: relative;
+  top: -2rem;
+  padding-top: 2rem ;
+}
+.login-footer a {
+  cursor: pointer;
+  color: rgb(59, 59, 241);
+}

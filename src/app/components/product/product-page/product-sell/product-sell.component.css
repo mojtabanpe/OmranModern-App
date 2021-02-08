@@ -1,0 +1,19 @@
+.main-container {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.radio-group {
+  display: flex;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+@media only screen and (max-width: 576px) {
+  .radio-button {
+    width: 45% !important;
+  }
+}

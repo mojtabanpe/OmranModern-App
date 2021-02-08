@@ -1,0 +1,241 @@
+<div class="main-container">
+  <div class="row d-none d-md-flex">
+    <div class="col-12">
+      <div class="section">
+        <div class="d-flex justify-content-around">
+          <span class="ml-auto d-flex align-items-center text-secondary"><i class="fas fa-sort-amount-up fa-2x ml-1"></i>مرتب سازی بر اساس</span>
+
+          <button #buttonRef1 class="btn btn-sm" (click)="sort(buttonRef1)">حداکثر قیمت واحد</button>
+          <button #buttonRef2 class="btn btn-sm" (click)="sort(buttonRef2)">حداقل قیمت</button>
+          <button #buttonRef3 class="btn btn-sm active" (click)="sort(buttonRef3)">حداکثر قیمت کل</button>
+          <button #buttonRef4 class="btn btn-sm" (click)="sort(buttonRef4)">حداقل قیمت کل</button>
+          <button #buttonRef5 class="btn btn-sm" (click)="sort(buttonRef5)">آخرین بروز رسانی</button>
+          <button #buttonRef6 class="btn btn-sm" (click)="sort(buttonRef6)">بالاترین کیفیت فروشنده</button>
+          <button #buttonRef7 class="btn btn-sm" (click)="sort(buttonRef7)">کمترین زمان ارسال</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-3 pl-1 d-none d-md-flex">
+      <div class="section w-100">
+        <h3 class="text-info"><i class="fas fa-filter ml-1"></i>جستجوی پیشرفته</h3>
+        <hr>
+        <mat-radio-group
+          aria-labelledby="radio-group-label"
+          class="radio-group"
+          [(ngModel)]="executeOrDischarge">
+          <mat-radio-button class="radio-button" value="execute">
+            با اجرا
+          </mat-radio-button>
+          <mat-radio-button class="radio-button" value="discharge">
+            با تخلیه بار
+          </mat-radio-button>
+        </mat-radio-group>
+        <hr>
+        <mat-radio-group
+        aria-labelledby="radio-group-label"
+        class="radio-group"
+        [(ngModel)]="transport">
+        <mat-radio-button class="radio-button" value="true">
+          حمل با فروشنده
+        </mat-radio-button>
+        <mat-radio-button class="radio-button" value="false">
+         بدون حمل
+        </mat-radio-button>
+      </mat-radio-group>
+      <hr>
+      </div>
+    </div>
+    <div class="d-md-none d-flex justify-content-around w-100">
+      <button class="btn btn-outline-info" (click)="openSearchDialog()"><i class="fas fa-filter"></i>جستجوی پیشرفته</button>
+      <button class="btn btn-outline-info" (click)="openSortDialog()"><i class="fas fa-sort-amount-up"></i>مرتب سازی بر اساس</button>
+    </div>
+    <div class="col-md-9 d-none d-md-block pr-md-0">
+      <div class="section">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead class="text-center">
+              <tr>
+                <th>فروشنده</th>
+                <th>اطلاعات تماس</th>
+                <th>حمل/اجرا/تجهبزات</th>
+                <th>شرایط</th>
+                <th>قیمت</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of marketers">
+                <td class="border-0">
+                  <img src="{{record.marketer.logo}}" class="img-fluid" width="50px">
+                  <span class="d-block">{{record.marketer.name}}</span>
+                  <span class="d-flex flex-row">
+                    <i *ngFor="let index of generateRowIndexes(record.marketer.stars)" class="fas fa-star text-warning"></i>
+                  </span>
+                </td>
+                <td class="border-right-0 border-left-0">
+                  <div>
+                    <i class="fas fa-plus-circle"></i>
+                    افزودن کالا به پروژه
+                  </div>
+                  <div>
+                    <i class="fas fa-phone"></i>
+                    دریافت شماره تماس
+                  </div>
+                  <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{record.contact.address}}
+                  </div>
+                </td>
+                <td class="border-right-0 border-left-0">
+                  <div>
+                    <span>قیمت حمل: </span>
+                    <span>{{record.transport.transportPrice}}</span>
+                  </div>
+                  <div>
+                    <span>وسیله حمل: </span>
+                    <span>{{record.transport.transportCar}}</span>
+                  </div>
+                  <div>
+                    <span>اجرا دارد؟: </span>
+                    <span>{{record.transport.execute}}</span>
+                  </div>
+                </td>
+                <td class="border-right-0 border-left-0">
+                  <div class="badge badge-danger">
+                    <span>تخفیف {{record.states.disscount}} درصد</span>
+                  </div>
+                  <div>
+                    <span>آخرین بروزرسانی: </span>
+                    <span>{{record.states.lastUpdate}}</span>
+                  </div>
+                  <div>
+                    <span>زمان آماده سازی: </span>
+                    <span>{{record.states.preparationTime}}</span>
+                  </div>
+                  <div>
+                    <span>شرکت حمل: </span>
+                    <span>{{record.states.transportCompany}}</span>
+                  </div>
+
+                </td>
+                <td class="border-right-0 border-left-0">
+                  <div>
+                    <span>قیمت هر کیلوگرم: </span>
+                    <span>{{record.price.pricePerUnit}} تومان</span>
+                  </div>
+                  <div>
+                    <span>قیمت کل: </span>
+                    <span>{{record.price.totalPrice}} تومان</span>
+                  </div>
+                  <button class="btn btn-outline-danger btn-sm">اطلاع عدم بروز بودن قیمت</button>
+                </td>
+
+              </tr>
+              <tr *ngFor="let record of marketers">
+                <td class="border-0">
+                  <img src="{{record.marketer.logo}}" class="img-fluid" width="50px">
+                  <span class="d-block">{{record.marketer.name}}</span>
+                  <span class="d-flex flex-row">
+                    <i *ngFor="let index of generateRowIndexes(record.marketer.stars)" class="fas fa-star text-warning"></i>
+                  </span>
+                </td>
+                <td class="border-right-0 border-left-0">
+                  <div>
+                    <i class="fas fa-plus-circle"></i>
+                    افزودن کالا به پروژه
+                  </div>
+                  <div>
+                    <i class="fas fa-phone"></i>
+                    دریافت شماره تماس
+                  </div>
+                  <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{record.contact.address}}
+                  </div>
+                </td>
+                <td class="border-right-0 border-left-0">
+                  <div>
+                    <span>قیمت حمل: </span>
+                    <span>{{record.transport.transportPrice}}</span>
+                  </div>
+                  <div>
+                    <span>وسیله حمل: </span>
+                    <span>{{record.transport.transportCar}}</span>
+                  </div>
+                  <div>
+                    <span>اجرا دارد؟: </span>
+                    <span>{{record.transport.execute}}</span>
+                  </div>
+                </td>
+                <td class="border-right-0 border-left-0">
+                  <div class="badge badge-danger">
+                    <span>تخفیف {{record.states.disscount}} درصد</span>
+                  </div>
+                  <div>
+                    <span>آخرین بروزرسانی: </span>
+                    <span>{{record.states.lastUpdate}}</span>
+                  </div>
+                  <div>
+                    <span>زمان آماده سازی: </span>
+                    <span>{{record.states.preparationTime}}</span>
+                  </div>
+                  <div>
+                    <span>شرکت حمل: </span>
+                    <span>{{record.states.transportCompany}}</span>
+                  </div>
+
+                </td>
+                <td class="border-right-0 border-left-0">
+                  <div>
+                    <span>قیمت هر کیلوگرم: </span>
+                    <span>{{record.price.pricePerUnit}} تومان</span>
+                  </div>
+                  <div>
+                    <span>قیمت کل: </span>
+                    <span>{{record.price.totalPrice}} تومان</span>
+                  </div>
+                  <button class="btn btn-outline-danger btn-sm">اطلاع عدم بروز بودن قیمت</button>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="d-md-none d-block mt-3 w-100">
+      <h3>فروشنده های کالا</h3>
+      <div class="section pt-3" *ngFor="let record of marketers">
+        <div class="d-flex">
+          <img src={{record.marketer.logo}} class="logos-for-mobile">
+          <div class="d-flex flex-column justify-content-between">
+            <span class="d-block">{{record.marketer.name}}</span>
+              <span class="d-flex flex-row">
+              <i *ngFor="let index of generateRowIndexes(record.marketer.stars)" class="fas fa-star text-warning"></i>
+            </span>
+          </div>
+          <div class="badge badge-danger mr-auto badge-aspect">
+            <span>{{record.states.disscount}}%</span>
+          </div>
+        </div>
+        <div class="row my-4 text-secondary">
+          <a class="col-6 text-primary mb-2">دریافت اطلاعات تماس</a>
+          <div class="col-6 pl-0 mb-2">
+            <span>قیمت هر کیلوگرم: </span>
+            <span class="mr-auto">{{record.price.pricePerUnit}} تومان</span>
+          </div>
+          <span class="col-6">
+            {{record.contact.address}}
+          </span>
+          <div class="col-6 pl-0">
+            <span>قیمت کل: </span>
+            <span class="mr-auto">{{record.price.totalPrice}} تومان</span>
+          </div>
+        </div>
+        <a class="d-flex align-items-center justify-content-end text-primary" (click)="openMoreInformation(record)">اطلاعات بیشتر<mat-icon>chevron_left</mat-icon></a>
+      </div>
+    </div>
+  </div>
+</div>

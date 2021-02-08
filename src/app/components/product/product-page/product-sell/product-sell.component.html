@@ -1,0 +1,42 @@
+<div class="main-container">
+<div class="row">
+  <div class="col-12">
+    <div class="section row">
+      <div class="col-sm-3 col-12">
+        <label id="radio-group-label">شرایط فروش با ارائه</label>
+        <mat-radio-group
+          aria-labelledby="radio-group-label"
+          class="radio-group flex-row flex-sm-column"
+          [(ngModel)]="selectedWay">
+          <mat-radio-button class="radio-button" *ngFor="let way of waysOfSell" [value]="way">
+            {{way}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="col-sm-4 col-12">
+        <div class="form-group">
+          <label>تعیین حجم کالا</label>
+          <p class="small text-secondary">جهت محاسبه تخفیف خرید عمده</p>
+          <input class="form-control" placeholder="کیلوگرم">
+        </div>
+        <div class="form-group">
+          <label>انتخاب شهر</label>
+          <p class="small text-secondary">جهت محاسبه هزینه حمل یا معرفی کالاها یا خدمات در اطراف شهر شما</p>
+          <input class="form-control" placeholder="شهر">
+        </div>
+      </div>
+      <div class="col-sm-5 small">
+        <p class="d-none d-sm-block">لورم ایپسوم یا طرح‌نما (به انگلیسی: Lorem ipsum) به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از
+           این متن به عنوان عنصری از ترکیب بندی برای پر کردن
+            صفحه و ارایه اولیه شکل ظاهری و کلی طرح
+            سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باش
+        </p>
+        <div class="d-flex">
+         <button class="btn btn-info mr-auto mt-5">چانه زنی هوشمند(محاسبه قیمت و تخفیفات)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

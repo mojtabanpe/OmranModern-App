@@ -1,0 +1,6 @@
+<div *ngIf="initialized">
+    <app-service-intro [motherService]="motherService" [minPrice]="minPrice" [maxPrice]="maxPrice" [sellersCount]="sellerServices?.length" *ngIf="initialized"></app-service-intro>
+    <!-- <app-service-sell></app-service-sell> -->
+    <app-service-seller [sellerServices]="sellerServices" *ngIf="initialized"></app-service-seller>
+    <app-service-details></app-service-details>
+</div>
