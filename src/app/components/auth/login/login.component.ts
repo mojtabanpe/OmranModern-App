@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
     err => {
       this.alert.error('کاربری با این مشخصات وجود ندارد!');
     }
-  );;
+  );
   }
 
   private updateData(token): void {
@@ -67,7 +67,6 @@ export class LoginComponent implements OnInit {
     this.decodeToken = this.jwtHelper.decodeToken(token);
     this.auth.tokenExpires = new Date(this.decodeToken.exp * 1000);
     this.auth.username = this.decodeToken.username;
-    
 
   }
 

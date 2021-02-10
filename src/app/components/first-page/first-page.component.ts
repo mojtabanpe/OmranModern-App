@@ -10,8 +10,6 @@ export class FirstPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('oomad to app');
-    
   }
 
   @HostListener('window:scroll', ['$event'])

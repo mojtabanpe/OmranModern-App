@@ -21,17 +21,6 @@ const routes: Routes = [
   { path : 'myProjects', component: MyProjectsComponent},
   { path : 'profileInformation', component: ProfileInformationsComponent},
   { path : 'contactInformation', component: ContactInformationComponent},
-  {
-    path: 'auth', component: AuthComponent, children:
-    [
-      { path: '', component: LoginComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'forget', component: PasswordRecoveryComponent },
-      { path: 'businessRegister', component: BusinessRegisterComponent },
-      { path: 'activityFields', component: ActivityFieldsComponent },
-    ]
-  }
  ];
 
 @NgModule({
