@@ -1,11 +1,44 @@
 .btn-menu {
   height: 50px;
+  border: none;
   border-bottom: 1px solid rgb(230, 225, 225);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+}
+.button-menu {
+	height: 50px;
+	border: none;
+	border-bottom: 1px solid rgb(230, 225, 225);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	overflow-x: visible;
+	position: relative;
+}
+.button-menu:focus {
+	border:none;
+	outline: none;
+}
+.submenu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	display: none;
+	transition: 2s;
+	border-right: 3px solid #2C5670;
 }
 
+.menu-open {
+    width: 13rem !important;
+    transform: translateX(-12.9rem);
+    z-index: 5000;
+	display: block !important;
+}
+ /* 
 ul {
   list-style-type: none;
   padding-right: 0;
@@ -38,7 +71,7 @@ ul {
    margin-bottom: .3em;
    margin-top: 0.3em;
  }
-/* az inja male man nis 4a7b99 */
+
 .categories_title {
   background: white;
   color: black;
@@ -296,18 +329,6 @@ ul {
 		position: relative;
 		line-height: 38px;
 	}
-	/* .categories_menu_toggle ul li.menu_item_children > a::before {
-		position: absolute;
-		content: "+";
-		left: 20px;
-		top: 50%;
-		-webkit-transform: translatey(-50%);
-		-moz-transform: translatey(-50%);
-		-ms-transform: translatey(-50%);
-		-o-transform: translatey(-50%);
-		transform: translatey(-50%);
-		font-size: 20px;
-	} */
 }
 @media only screen and (max-width: 767px) {
 	.categories_menu_toggle ul li.menu_item_children > a {
@@ -552,10 +573,8 @@ ul {
 	opacity: 0.8;
 }
 
-/*-- 2.7 Categories menu css end --*/
 
 
-/*home two css here*/
 
 .header_bottom {
 	margin-bottom: 30px;
@@ -609,7 +628,6 @@ ul {
 	}
 }
 
-/*home four css here*/
 
 @media only screen and (min-width: 992px) {
 	.categories_four .categories_menu_toggle {
@@ -625,4 +643,9 @@ ul {
 	.categories_four .categories_menu_toggle > ul > li > a i.fa-angle-left {
 		line-height: 40px;
 	}
-}
+} */
+/* .btn-menu .mat-menu-trigger {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	} */

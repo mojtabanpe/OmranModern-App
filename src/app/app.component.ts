@@ -16,6 +16,15 @@ export class AppComponent implements OnInit{
       }
    });
   }
+  @HostListener('document:click', ['$event'])
+  documentClick(event): void {
+      if (event.target.attributes.id !== 'categories-menu') {
+        const openElements: NodeListOf<Element> = document.querySelectorAll('.menu-open');
+        if (openElements) {
+          Array.from(openElements, el => {el.classList.remove('menu-open'); });
+        }
+      }
+  }
   ngOnInit(): void {
 
   }

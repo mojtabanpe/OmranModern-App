@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class RepositoryService {
-baseUrl = environment.apiUrl;
+baseUrl = environment.serverUrl;
 constructor(private http: HttpClient) { }
 
 
@@ -39,5 +39,9 @@ getSellerBySlug(slug: string): any {
 }
 getRelatedImages(related): any {
   return this.http.post(this.baseUrl + 'dokkoon/related_images/', related);
+}
+
+getMenu(): any {
+  return this.http.get(this.baseUrl + 'dokkoon/menu/');
 }
 }

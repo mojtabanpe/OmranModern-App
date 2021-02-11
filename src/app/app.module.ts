@@ -124,12 +124,12 @@ import {CookieService} from 'ngx-cookie-service';
     ProfileModule,
     MatMenuModule
   ],
-  providers: [GeneralService, AuthService, RepositoryService, CookieService
-  //   {
-  //   provide: HTTP_INTERCEPTORS,
-  //   useClass: AuthInterceptor,
-  //   multi: true
-  // },
+  providers: [GeneralService, AuthService, RepositoryService, CookieService,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },
 ],
   bootstrap: [AppComponent]
 })
