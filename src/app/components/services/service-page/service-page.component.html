@@ -1,6 +1,5 @@
 <div *ngIf="initialized">
-    <app-service-intro [motherService]="motherService" [minPrice]="minPrice" [maxPrice]="maxPrice" [sellersCount]="sellerServices?.length" *ngIf="initialized"></app-service-intro>
-    <!-- <app-service-sell></app-service-sell> -->
-    <app-service-seller [sellerServices]="sellerServices" *ngIf="initialized"></app-service-seller>
-    <app-service-details></app-service-details>
+    <app-service-intro [motherService]="motherService" [minPrice]="minPrice" [maxPrice]="maxPrice" [sellersCount]="sellerServices?.length"></app-service-intro>
+    <app-service-seller [sellerServices]="sellerServices"></app-service-seller>
+    <app-service-details [comments]="motherService.comments" [explain]="motherService.explain" [service]="motherService"></app-service-details>
 </div>

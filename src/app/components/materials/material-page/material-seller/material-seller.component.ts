@@ -14,68 +14,18 @@ export class MaterialSellerComponent implements OnInit {
   executeOrDischarge = '';
   transport: boolean;
   typeOfSort = 'minUnitPrice';
-  // sellers =  [
-  //   {
-  //     seller: {
-  //       name: 'عمران مدرن',
-  //       stars: 2,
-  //       logo: '../../../../assets/img/logo/logo.png'
-  //     },
-  //     contact: {
-  //       phoneNumber: '02188239932',
-  //       address: 'تهران منطقه ۳'
-  //     }
-  //     ,
-  //     transport: {
-  //       transportPrice: '112900',
-  //       transportCar: 'نیسان گاوی',
-  //       execute: false
-  //     },
-  //     states: {
-  //       disscount: 7,
-  //       lastUpdate: 'دیروز',
-  //       preparationTime: 3,
-  //       transportCompany: 'برادران قلی پور'
-  //     },
-  //     price: {
-  //       pricePerUnit: '145500',
-  //       totalPrice: '2300000'
-  //     }
-  //   },
-  //   {
-  //     seller: {
-  //       name: 'چم چی بگم',
-  //       stars: 5,
-  //       logo: '../../../../assets/img/logo/chomchibegam.png'
-  //     },
-  //     contact: {
-  //       phoneNumber: '02188239932',
-  //       address: 'تهران منطقه 6'
-  //     }
-  //     ,
-  //     transport: {
-  //       transportPrice: '14899',
-  //       transportCar: 'نیسان گاوی',
-  //       execute: true
-  //     },
-  //     states: {
-  //       disscount: 13,
-  //       lastUpdate: 'امروز',
-  //       preparationTime: 2,
-  //       transportCompany: 'خواهران قلی پور'
-  //     },
-  //     price: {
-  //       pricePerUnit: '160000',
-  //       totalPrice: '190000'
-  //     }
-  //   }
-  // ];
-  
-  constructor(public dialog: MatDialog) { }
+
+  constructor(public dialog: MatDialog) {
+    
+   }
 
   ngOnInit(): void {
-  }
+    console.log(this.sellerMaterials);
 
+    for (const sellerMaterial of this.sellerMaterials) {
+      sellerMaterial.material.images = sellerMaterial.material.images.toString().split(',');
+    }
+  }
   sort(btn: HTMLButtonElement): void {
     document.getElementsByClassName('active').item(0).classList.remove('active');
     btn.classList.add('active');

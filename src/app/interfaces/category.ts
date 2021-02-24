@@ -17,4 +17,8 @@ export interface Category {
         services: Array<number>,
         materials: Array<number>
     };
+    materials_list: Array<any>;
+    services_list: Array<any>;
+    mother_materials_list: Array<any>;
+    mother_services_list: Array<any>;
 }

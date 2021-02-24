@@ -4,9 +4,12 @@
       <button class="button-menu categories-menu" *ngFor="let item1 of item.subMenu;index as j" (click)="openMenu(i,j)">{{item1.name}}<mat-icon *ngIf="item1.hasChild">chevron_left</mat-icon>
         <div attr.id="submenu{{i}}{{j}}" class="submenu categories-menu">
           <button class="button-menu categories-menu" *ngFor="let item2 of item1.subMenu, index as k" (click)="openMenu(i,j,k)">{{item2.name}}<mat-icon *ngIf="item2.hasChild">chevron_left</mat-icon>
-            <div class="w-100 h-100" *ngIf="!item2.hasChild" routerLink="/category/{{item2.name}}"></div>
+            <div class="w-100 h-100" *ngIf="!item2.hasChild" (click)="navigate(item2.name)"></div>
             <div attr.id="submenu{{i}}{{j}}{{k}}" class="submenu categories-menu">
-              <button class="button-menu categories-menu" *ngFor="let item3 of item2.subMenu" >{{item3.name}}<mat-icon *ngIf="item3.hasChild">chevron_left</mat-icon>      
+              <button class="button-menu categories-menu" *ngFor="let item3 of item2.subMenu" >{{item3.name}}<mat-icon *ngIf="item3.hasChild">chevron_left</mat-icon>
+                <div class="all-background" *ngIf="!item3.hasChild" (click)="navigate(item3.name)"></div>    
+              </button>
+            </div> 
           </button>
         </div> 
       </button>

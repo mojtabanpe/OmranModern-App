@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 
 interface ProductNode {
   name: string;
-  children?: ProductNode[];
+  subMenu?: ProductNode[];
 }
 interface Brand {
   value: string;
@@ -23,33 +23,33 @@ interface Quality {
   viewValue: string;
 }
 
-const TREE_DATA: ProductNode[] = [
-  {
-    name: 'آجر',
-    children: [
-      {name: 'قرمز'},
-      {name: 'زرد'},
-      {name: 'چم چی'},
-    ]
-  }, {
-    name: 'میلگرد',
-    children: [
-      {
-        name: 'بنفش',
-        children: [
-          {name: '۱۲میل'},
-          {name: '۱۰ میل'},
-        ]
-      }, {
-        name: 'صورتی',
-        children: [
-          {name: '۴۳میل'},
-          {name: '۵۵میل'},
-        ]
-      },
-    ]
-  },
-];
+// const TREE_DATA: ProductNode[] = [
+//   {
+//     name: 'آجر',
+//     subMenu: [
+//       {name: 'قرمز'},
+//       {name: 'زرد'},
+//       {name: 'چم چی'},
+//     ]
+//   }, {
+//     name: 'میلگرد',
+//     subMenu: [
+//       {
+//         name: 'بنفش',
+//         subMenu: [
+//           {name: '۱۲میل'},
+//           {name: '۱۰ میل'},
+//         ]
+//       }, {
+//         name: 'صورتی',
+//         subMenu: [
+//           {name: '۴۳میل'},
+//           {name: '۵۵میل'},
+//         ]
+//       },
+//     ]
+//   },
+// ];
 
 @Component({
   selector: 'app-category-page',
@@ -58,18 +58,17 @@ const TREE_DATA: ProductNode[] = [
 })
 export class CategoryPageComponent implements OnInit {
   category: Category;
+  treeData: any;
+  typeMode = '';
   initialized = false;
-  initializedRelated = false;
-  pageDetails;
-  relatedService;
+  productsList = [];
   choosenQuality = '';
   choosenBrand = '';
   mainPictureUrl = 'https://cdn.isna.ir/d/2020/04/20/4/61618063.jpg';
   mainProducteName = 'میلگرد ۱۸';
-  treeControl = new NestedTreeControl<ProductNode>(node => node.children);
+  treeControl = new NestedTreeControl<ProductNode>(node => node.subMenu);
   dataSource = new MatTreeNestedDataSource<ProductNode>();
   typeOfSort = 'minUnitPrice';
-
 
   minValue = 1000;
   maxValue = 4000;
@@ -104,31 +103,44 @@ export class CategoryPageComponent implements OnInit {
 
   constructor(private repository: RepositoryService, private activatedRoute: ActivatedRoute, public dialog: MatDialog,
               private rendrer: Renderer2)
-  {
-      this.dataSource.data = TREE_DATA;
-  }
+  {}
 
   ngOnInit(): void {
     const slug = this.activatedRoute.snapshot.paramMap.get('slug');
-    this.repository.getCategoryPageBySlug(slug).subscribe(res => {
-      this.pageDetails = res;
-      this.initialized = true;
-    });
+
     this.repository.getCategoryBySlug(slug).subscribe(res => {
       this.category = res;
-      this.relatedService = this.category.related.categories;
-      this.repository.getRelatedImages(this.relatedService).subscribe(response => {
-        this.relatedService = response;
-        this.initializedRelated = true;
+      this.repository.getTreeCategories(this.category.id).subscribe(response => {
+        this.dataSource.data = response;
       });
+      this.typeMode = this.category.type ? 'materials' : 'services';
+      this.productsList = res.mother_materials_list.length === 0 ? res.mother_services_list : res.mother_materials_list;
+      this.initialize();
+      this.initialized = true;
     });
   }
-  goToRemoveClass(): void{
-    setTimeout(() => {
-    this.rendrer.setStyle(document.getElementsByClassName('cdk-overlay-connected-position-bounding-box').item(0), 'right', '0');
-    console.log(document.getElementsByClassName('cdk-overlay-connected-position-bounding-box').item(0));
 
-    }, 100);
+  initialize(): void {
+    for (const product of this.productsList) {
+      product.images = product.images.toString().split(',');
+      product.max = 0;
+      product.min = 3000000000000000;
+      product.sellerProducts = [];
+      const materialOrService = product.services_list ? product.services_list : product.materials_list ;
+      for (const child of materialOrService) {
+        for (const seller of child.sellers_list)  {
+          product.sellerProducts.push(seller);
+          if ( product.min > seller.prices[0].amount) {
+            product.min = seller.prices[0].amount;
+          }
+          if ( product.max < seller.prices[0].amount) {
+            product.max = seller.prices[0].amount;
+          }
+        }
+
+
+      }
+    }
   }
 
   sort(btn: HTMLButtonElement): void {
@@ -137,7 +149,7 @@ export class CategoryPageComponent implements OnInit {
 
   }
 
-  hasChild = (_: number, node: ProductNode) => !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: ProductNode) => !!node.subMenu && node.subMenu.length > 0;
 
   openGeneralSortDialog(): void {
     const sortDialogRef = this.dialog.open(GeneralSortDialogComponent, {
@@ -174,5 +186,6 @@ export class CategoryPageComponent implements OnInit {
       }
     });
   }
+
 
 }

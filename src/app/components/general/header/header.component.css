@@ -1,41 +1,24 @@
 #header-top {
   display: flex;
-  position: fixed;
-  top: 0;
-  right: 0;
   justify-content: space-around;
   width: 100%;
   align-items: center;
   height: 7rem;
   background-color: #2b5670 !important;
-  /* position: inherit; */
 }
 
 #header-bottom {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
   width: 100%;
   height: 3rem;
   background-color: #ebeff3 !important;
-  top: 7rem;
 }
 
-a {
+#header-top a {
   color: white !important;
 }
-.sticky {
-  background-color: #2b5670;
-  position: fixed !important;
-  height: 5rem !important;
-}
-.header-svg {
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-
 .logo-container {
   max-height: 120px;
   padding-top: 5px;
@@ -99,10 +82,45 @@ a {
   font-weight: normal;
 }
 
-.shadow-svg {
-  box-shadow: 10px 30px black;
+
+
+.header-top-small {
+  background-color: #2c5670;
+  padding: .5rem .5rem;
 }
 
+.header-bottom-small {
+  background-color: #ebeff3;
+  padding: .5rem .5rem;
+}
+.search-field-small {
+  width: 75%;
+  display: flex;
+  padding: .5rem 0rem;
+  height: 50px;
+}
 
-
-
+#sidebar {
+  position: fixed;
+  top: 0;
+  right: -5rem;
+  width: 0;
+  height: 50rem;
+  background-color: white;
+  z-index: 1000;
+  transition: width 1s ease;
+}
+#sidebar.show {
+  width: 300px;
+  right: 0;
+}
+#close-sidebar {
+  position: absolute;
+  top: 1rem;
+  left: -.7rem;
+  background-color: #B20F50;
+  color: white;
+  font-size: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+}

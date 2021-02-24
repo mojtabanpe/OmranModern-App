@@ -1,17 +1,19 @@
-#footer {
-  position: relative;
-  top: 0;
+#footer-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #ebeff3 !important;
+  /* top: 0; */
+  height: 5rem;
 }
 
-.footer-svg {
-  position: absolute;
-  bottom: 0;
-}
 #footer-bottom {
-  position: absolute;
-  bottom: 0;
   margin-right: 3rem;
   margin-left: 3rem;
+  background-color: #2b5670 !important;
+  height: auto;
+  padding-top: 3rem;
 }
 .my-nav {
   padding-top: 1rem;
@@ -24,14 +26,7 @@
   font-weight: normal;
   font-size: 1rem;
 }
-#footer-top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 36rem;
-  width: 100%;
-}
+
 .about-us{
   font-size: 1rem !important;
 }
@@ -83,21 +78,4 @@ h3 {
   }
 }
 
-@media only screen and (max-width: 1300px) {
-  .footer-svg {
-    display: none !important;
-  }
-  #footer-top {
-    background-color: #ebeff3 !important;
-    position: inherit;
-    top: 0;
-    height: 5rem;
-  }
-  #footer-bottom {
-    background-color: #2b5670 !important;
-    position: inherit;
-    height: auto;
-    padding-top: 3rem;
-  }
 
-}

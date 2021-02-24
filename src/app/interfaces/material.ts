@@ -27,6 +27,8 @@ export interface MotherMaterial {
     user_id: number;
     attributes: Array<Attribute>;
     seller_attributes: Array<number>;
+    materials_list: Array<any>;
+    comments: Array<any>;
 }
 
 export interface SellerMaterial {

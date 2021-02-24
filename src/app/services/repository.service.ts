@@ -40,8 +40,13 @@ getSellerBySlug(slug: string): any {
 getRelatedImages(related): any {
   return this.http.post(this.baseUrl + 'dokkoon/related_images/', related);
 }
-
 getMenu(): any {
   return this.http.get(this.baseUrl + 'dokkoon/menu/');
+}
+SubmitComment(comment): any {
+  return this.http.post(this.baseUrl + 'dokkoon/unapproved_comments', comment);
+}
+getTreeCategories(id): any {
+  return this.http.get(this.baseUrl + 'dokkoon/tree_categories/' + id);
 }
 }

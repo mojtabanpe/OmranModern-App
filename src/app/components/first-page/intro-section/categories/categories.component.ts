@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { RepositoryService } from './../../../../services/repository.service';
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 
@@ -14,61 +15,15 @@ export interface ItemMenu {
 })
 export class CategoriesComponent implements OnInit {
   prevIndex = '';
-  categories: Array<ItemMenu> = [
-    {
-      name: 'مصالح سفت کاری و نازک کاری',
-      subMenu: [
-        {name: 'وسایل حمام', subMenu: [
-          {name: 'لیف', subMenu: [], hasChild: false},
-          {name: 'صابون', subMenu: [
-            {name: 'صابون گلنار', subMenu: [], hasChild: false},
-            {name: 'صابون', subMenu: [], hasChild: false},
-          ], hasChild: true},
-          {name: 'شامپو', subMenu: [], hasChild: false}
-        ], hasChild: true},
-        {name: 'مهندس طراح/شرکت مشاور', subMenu: [], hasChild: false},
-        {name: 'خدمات آرمایشگاهی ساختمان', subMenu: [], hasChild: false},
-        {name: 'شارکت و ساخت/اخذ مجو', subMenu: [], hasChild: false}
-      ],
-      hasChild: true
-    },
-    {
-      name: 'مهندس طراح/شرکت مشاور',
-      subMenu: [
-        {name: 'مهندس و شرکت ها', subMenu: [], hasChild: false},
-        {name: 'مهندس طراح/شرکت مشاور', subMenu: [], hasChild: false},
-        {name: 'خدمات آرمایشگاهی ساختمان', subMenu: [], hasChild: false}
-      ],
-      hasChild: true
-    },
-    {
-      name: 'مهندس و شرکت های مجری',
-      subMenu: [
-        {name: 'مهندس و شرکت ها', subMenu: [], hasChild: false},
-        {name: 'مهندس طراح/شرکت مشاور', subMenu: [], hasChild: false},
-        {name: 'خدمات آرمایشگاهی ساختمان', subMenu: [], hasChild: false},
-        {name: 'شارکت و ساخت/اخذ مجو', subMenu: [], hasChild: false}
-      ],
-      hasChild: true
-    },
-    {
-      name: 'آرمایشگاه',
-      subMenu: [
-        {name: 'مهندس و شرکت ها', subMenu: [], hasChild: false},
-        {name: 'مهندس طراح/شرکت مشاور', subMenu: [], hasChild: false},
-        {name: 'خدمات آرمایشگاهی ساختمان', subMenu: [], hasChild: false},
-        {name: 'شارکت و ساخت/اخذ مجو', subMenu: [], hasChild: false}
-      ],
-      hasChild: true
-    },
-  ];
-  constructor( private renderer: Renderer2, private el: ElementRef, private repository: RepositoryService) {}
+  categories = [];
+  constructor( private renderer: Renderer2, private el: ElementRef, private repository: RepositoryService, private router: Router) {}
 
   ngOnInit(): void {
     this.repository.getMenu().subscribe(res => {
       this.categories = res;
     });
   }
+
   openMenu(index: string, index1: string, index2: string): void {
     let finalInndex: string = index.toString();
     try {
@@ -89,8 +44,6 @@ export class CategoriesComponent implements OnInit {
           parents.push('submenu' + finalInndex[0]);
           parents.push('submenu' + finalInndex[0] + finalInndex[1]);
         }
-        console.log(parents);
-
         const openElements: NodeListOf<Element> = document.querySelectorAll('.menu-open');
         if (openElements) {
           Array.from(openElements, el => {
@@ -107,5 +60,8 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-
+  navigate(name: string): void {
+    name = name.replace(' ', '-');
+    this.router.navigate(['/category/' + name]);
+  }
 }

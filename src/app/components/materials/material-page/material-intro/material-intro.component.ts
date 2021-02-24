@@ -9,18 +9,15 @@ import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 })
 export class MaterialIntroComponent implements OnInit {
   @Input() motherMaterial: MotherMaterial;
-  @Input() minPrice = 0;
-  @Input() maxPrice = 0;
+  @Input() minPrice = '';
+  @Input() maxPrice = '';
   @Input() sellersCount = 0;
-  
-  relatedCategories = [];
 
-  constructor(private repository: RepositoryService) { }
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.repository.getRelatedCategories(this.motherMaterial.category.item_id).subscribe(res => {
-      this.relatedCategories = res;
-    });
+    this.motherMaterial.images = this.motherMaterial.images.toString().split(',');
   }
 
 

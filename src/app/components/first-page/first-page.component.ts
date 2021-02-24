@@ -12,8 +12,8 @@ export class FirstPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll($event): void {
-    this.isStickyHeader = window.scrollY >= 50;
-  }
+  // @HostListener('window:scroll', ['$event'])
+  // onWindowScroll($event): void {
+  //   this.isStickyHeader = window.scrollY >= 50;
+  // }
 }

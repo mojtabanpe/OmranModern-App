@@ -4,6 +4,30 @@ app-root {
   display: flex;
   flex-direction: column;
 }
+/* app-header {
+  position: relative;
+  z-index: 100000;
+  height: auto;
+  width: 100%;
+} */
+.contentWrapper {
+  transform: translateY(12rem);
+}
+.header-wrapper{
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+}
+.footer-wrapper {
+  transform: translateY(15rem);
+}
+.my-nav {
+  padding-top: 1rem;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  width: 38rem;
+}
 
 *:not(button){
   font-family: IRANSans !important;
@@ -22,6 +46,7 @@ p {
 body {
   background-color: #f1f4f6 !important;
   direction: rtl !important;
+  text-align: right !important;
   font-family: IRANSans !important;
 }
 .mat-expansion-panel-body {
@@ -417,6 +442,7 @@ td.mat-cell {
 .text-sm {
   font-size: smaller;
 }
+
 @media only screen and (min-width: 768px) {
   .section-md-gray {
     background-color: rgba(220, 225, 228, 0.87);
@@ -498,3 +524,41 @@ td.mat-cell {
   cursor: pointer;
 }
 
+.content {
+  position: relative;
+}
+
+.comment{
+  padding: .5rem;
+}
+.comment-identifier {
+  border-right: 3px solid #17a2b8;
+  padding-right: .3rem;
+}
+.datepicker-outer-container {
+  text-align: center !important;
+}
+.datepicker-inner-container *{
+  text-align: center !important;
+}
+.date-picker-wrapper {
+  max-width: 15rem;
+}
+.date-picker-wrapper input {
+  width: 100%;
+}
+.time-container {
+  direction: ltr !important;
+}
+.dp-btn.selected {
+  background: #dff04d !important;
+}
+.theme-default {
+  background: #17a2b8 !important;
+}
+.dp-btn:hover {
+  background-color: white !important;
+}
+.dp-btn:hover span {
+  color: #17a2b8 !important;
+}

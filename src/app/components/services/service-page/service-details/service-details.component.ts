@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Service } from './../../../../interfaces/service';
+import { RepositoryService } from './../../../../services/repository.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Comment } from './../../../../interfaces/comment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-service-details',
@@ -6,36 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./service-details.component.css']
 })
 export class ServiceDetailsComponent implements OnInit {
-  comments = [
-    {
-      text: 'در یک کلمه داغون',
-      date: {
-        year: '1399',
-        month: 'دی',
-        day: '2'
-      },
-      name: 'مجتبی'
-    },
-    {
-      text: 'اق اق اق',
-      date: {
-        year: '1399',
-        month: 'بهمن',
-        day: '3'
-      },
-      name: 'علی'
-    },
-    {
-      text: 'خوب بود جای کار داره',
-      date: {
-        year: '1399',
-        month: 'آذر',
-        day: '5'
-      },
-      name: 'آرزو'
-    }
-  ];
-  constructor() { }
+  @Input() service: Service;
+  @Input() comments: Array<Comment>;
+  @Input() explain;
+  commentFirstName = '';
+  commentLastName = '';
+  commentText = '';
+  errors = [];
+  constructor(private repository: RepositoryService, private alert: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -54,5 +36,34 @@ export class ServiceDetailsComponent implements OnInit {
 
   showMoreComments(): void {
 
+  }
+
+  submitComment(): void {
+    const name = this.commentFirstName + ' ' + this.commentLastName;
+    if (name.trim() === '') {
+      this.errors.push('لطفا نام و یا نام خوانوادگی را پر کنید!');
+    }
+    if (this.commentText === '') {
+      this.errors.push('لطفا متن را پر کنید!!');
+    }
+    if (this.errors.length === 0) {
+      const comment = {
+        name,
+        text: this.commentText,
+        product_type: false,
+        product_id: this.service.id,
+        product_name: this.service.name
+      };
+
+      this.repository.SubmitComment(comment).subscribe(res => {
+        this.alert.success('نظر شما در صف تایید قرار گرفت!');
+        console.log(res);
+      });
+    } else {
+      for (const er of this.errors) {
+        this.alert.error(er);
+      }
+      this.errors = [];
+    }
   }
 }

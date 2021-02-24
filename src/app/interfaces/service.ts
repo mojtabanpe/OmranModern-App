@@ -27,6 +27,7 @@ export interface MotherService {
     user_id: number;
     attributes: Array<Attribute>;
     seller_attributes: Array<number>;
+    services_list: Array<any>;
 }
 
 export interface SellerService {

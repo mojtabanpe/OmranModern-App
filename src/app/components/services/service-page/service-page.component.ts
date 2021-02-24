@@ -11,46 +11,50 @@ import { RepositoryService } from '../../../services/repository.service';
 })
 export class ServicePageComponent implements OnInit {
   motherService: MotherService;
-  sellerServices;
-  minPrice = 0;
-  maxPrice = 0;
+  sellerServices = [];
+  minPrice = '';
+  maxPrice = '';
   initialized = false;
   constructor(private repository: RepositoryService, private activatedRoute: ActivatedRoute, private general: GeneralService) { }
 
   ngOnInit(): void {
     const slug = this.activatedRoute.snapshot.paramMap.get('slug');
     this.repository.getMotherServiceBySlug(slug).subscribe(res => {
-      this.motherService = res;
+      this.motherService = res[0];
+      this.initialize();
       this.initialized = true;
-      this.repository.getMotherServicePage(this.motherService.id).subscribe(response => {
-        this.sellerServices = response;
-        this.initialized = true;
-        console.log(response);
-        
-        this.computePriceRange();
-      });
     });
   }
 
-  computePriceRange(): void {
+
+  initialize(): void {
     let min = 300000000000;
     let max = 0;
-    for (const item of this.sellerServices) {
-      let temp = item.prices[0].amount;
-      if (temp !== 'توافقی') {
-        temp = +temp;
-        if (temp < min) {
-          min = temp;
-        } else if (temp > min) {
-          max = temp;
+    for (const service of this.motherService.services_list) {
+      for (const sellerService of service.sellers_list) {
+        let temp = sellerService.prices[0].amount;
+        this.sellerServices.push(sellerService);
+        if (temp !== 'توافقی') {
+          temp = +temp;
+          if (temp < min) {
+            min = temp;
+          } else if (temp > max) {
+            max = temp;
+          }
         }
       }
     }
     if (min === 300000000000) {
-      min = 0;
+      this.minPrice = 'نامشخص';
+    } else  {
+      this.minPrice = min.toString();
     }
-    this.minPrice = min;
-    this.maxPrice = max;
+    if (max === 0) {
+      this.maxPrice  = 'نامشخص';
+    } else  {
+      this.maxPrice = max.toString();
+    }
+
   }
 
 
