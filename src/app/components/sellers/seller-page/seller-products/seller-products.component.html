@@ -1,4 +1,4 @@
-<div class="section mt-4">
+<div class="section mt-4" *ngIf="seller.materials_list.length !== 0">
   <div class="d-flex justify-content-between align-items-center">
     <h3 class="text-info mb-0">کالاها</h3>
    <div class="search-field" [ngClass]="{'get-border': searchShadow}">
@@ -23,7 +23,7 @@
 
 </div>
 
-<div class="section mt-3 services">
+<div class="section mt-3 services" *ngIf="seller.services_list.length !== 0">
   <div class="d-flex justify-content-between align-items-center">
     <h3 class="text-info mb-0">خدمات</h3>
     <a class="d-flex align-items-center text-secondary d-md-none">مشاهده همه خدمات<mat-icon>chevron_left</mat-icon></a>

@@ -207,14 +207,14 @@
       </div> -->
       
       <div class="seller-material row" *ngFor="let sellerMaterial of sellerMaterials">
-        <img [src]="sellerMaterial.material.image" class="col-3"> <!--image -->
+        <img [src]="sellerMaterial.material.images[0]" class="col-3 material-image"> <!--image -->
         <div class="col-9 d-flex flex-column text-secondary"> <!--samate chap-->
           <div class="d-flex justify-content-between"> <!--balayi-->
             <div class="d-flex flex-column">
               <p>{{sellerMaterial.material.name}}</p>
               <div class="d-flex align-items-center">
                 <mat-icon class="text-warning">star</mat-icon>
-                <p class="mb-0">{{sellerMaterial.material.rate|persianNumber}}</p>
+                <p class="mb-0">{{sellerMaterial.material.stars.average|persianNumber}}</p>
               </div>    
             </div>
             <div class="d-flex align-items-center text-secondary">
@@ -228,12 +228,13 @@
             
           </div>
           <div class="d-flex justify-content-between section-gray position-relative"> <!--payini-->
-            <img class="seller-image" [src]="sellerMaterial.image">
+            <div *ngIf="sellerMaterial.is_suggested" class="suggest">پیشنهاد عمران مدرن</div>
+            <img class="seller-image" [src]="sellerMaterial.seller.image">
             <div class="d-flex flex-column">
-              <p>{{sellerMaterial.name}}</p>
+              <p>{{sellerMaterial.seller.name}}</p>
               <div class="d-flex align-items-center">
                 <mat-icon class="text-warning">star</mat-icon>
-                <p class="mb-0">{{sellerMaterial.rate|persianNumber}}</p>
+                <p class="mb-0">{{sellerMaterial.seller.stars.average|persianNumber}}</p>
               </div>    
             </div>
             <div class="d-flex flex-column">
@@ -243,7 +244,7 @@
               </div> 
               <div class="d-flex align-items-center">
                 <mat-icon class="text-info">pin</mat-icon>
-                <p class="mb-0">{{sellerMaterial.addresses[0].city}}-{{sellerMaterial.addresses[0]?.zone}}</p>
+                <p class="mb-0">{{sellerMaterial.seller.addresses[0].city}}-{{sellerMaterial.seller.addresses[0]?.zone}}</p>
               </div> 
             </div>
             <div class="d-flex flex-column">
@@ -254,7 +255,7 @@
               <div class="d-flex ml-2">
                 <p class="ml-1">آخرین بروزرسانی: </p>
                 <!-- <p>{{sellerMaterial.prices[0].last_update}}</p> -->
-                <p>دیروز</p>
+                <p>{{sellerMaterial?.prices[0].last_update| dayPast| persianNumber}}</p>
               </div>
               <div class="disscounts">
                 تخفیف ۵ درصد

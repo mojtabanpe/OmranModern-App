@@ -90,10 +90,8 @@ export class SellerProductsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.services = this.seller.services;
-    this.materials = this.seller.materials;
-    console.log(this.materials);
-    console.log(this.services);
+    this.services = this.seller.services_list;
+    this.materials = this.seller.materials_list;
     for (const service of this.services) {
       service.hover = false;
     }

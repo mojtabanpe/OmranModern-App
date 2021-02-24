@@ -22,7 +22,7 @@
           </div>
           <div class="d-flex d-md-none align-items-center">
             <h3 class="ml-3 mb-0">دسته بندی</h3>
-            <a href="#" class="text-primary">{{motherService.category.item_name}}</a>
+            <a class="text-primary" routerLink="/category/{{motherService.category.slug}}">{{motherService.category.name}}</a>
           </div>
         </div>
         <div class="col-7 pt-3 d-none d-md-block">
@@ -32,7 +32,7 @@
             <div class="col-8">
               <div class="d-flex">
                 <h5 class="ml-3">دسته بندی</h5>
-                <a href="#" class="text-primary">{{motherService.category.item_name}}</a>
+                <a routerLink="/category/{{motherService.category.slug}}" class="text-primary">{{motherService.category.name}}</a>
               </div>
               <div class="d-flex">
                 <h5 class="ml-3">بازه قیمت</h5>
@@ -75,7 +75,7 @@
         <hr>
           <div class="top-carousel">
             <carousel [cellsToShow]="1" [arrowsOutside]="true"  class="my-carousel d-flex justify-content-center flex-column">
-              <div class="carousel-cell text-center" *ngFor="let related of relatedCategories">
+              <div class="carousel-cell text-center" *ngFor="let related of motherService.category.related.categories">
                 <span class="my-3 related-company">{{related.name}}</span>
                 <img [src]= related.image >
                 <!-- <span class="related-price text-primary w-100"><p class="text-center">{{related.priceRange}}</p></span> -->

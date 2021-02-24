@@ -6,8 +6,10 @@
 */
 {
   "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "allowJs": true
+    // "allowJs": true
     },
   "references": [
     {
@@ -21,3 +23,4 @@
     }
 ]
 }
+

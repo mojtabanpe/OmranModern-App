@@ -1,3 +1,6 @@
+import { UploadService } from './../../../OmranModern-Admin/src/app/services/upload.service';
+import { PersianCalendarService } from './services/persian-calendar.service';
+import { PersianNumberPipe } from './pipes/persian-number.pipe';
 import { RepositoryService } from './services/repository.service';
 import { SellerIntroComponent } from './components/sellers/seller-page/seller-intro/seller-intro.component';
 import { SellerProductsComponent } from './components/sellers/seller-page/seller-products/seller-products.component';
@@ -30,7 +33,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { ProductModule } from './components/product/product.module';
 import { FooterComponent } from './components/general/footer/footer.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,6 +64,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.intercept';
 import { SharedModule } from './shared/shared.module';
 import {CookieService} from 'ngx-cookie-service';
+import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
+import { registerLocaleData } from '@angular/common';
+
+
 
 
 
@@ -122,14 +129,15 @@ import {CookieService} from 'ngx-cookie-service';
     NgMultiSelectDropDownModule.forRoot(),
     MatButtonToggleModule,
     ProfileModule,
-    MatMenuModule
+    MatMenuModule,
+    NgPersianDatepickerModule
   ],
-  providers: [GeneralService, AuthService, RepositoryService, CookieService,
+  providers: [GeneralService, AuthService, RepositoryService, UploadService, CookieService, PersianNumberPipe, PersianCalendarService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },
+  }
 ],
   bootstrap: [AppComponent]
 })

@@ -24,7 +24,8 @@
   <div class="col-lg-6 col-md-6 mt-md-4 pb-4">
     <div class="h-100 w-100">
       <h3 class="text-primary">معرفی کامل شرکت {{seller.name}}</h3>
-      <p class="text-secondary">{{seller.explain | htmlToPlaintext}}</p>
+      <div [innerHtml]="seller.explain"></div>
+      <!-- <p class="text-secondary">{{seller.explain | htmlToPlaintext}}</p> -->
       <div class="text-primary text-left">
         ادامه مطلب >
       </div>

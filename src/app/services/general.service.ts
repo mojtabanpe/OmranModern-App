@@ -28,7 +28,11 @@ defaultCategory: Category = {
       categories: [],
       services: [],
       materials: []
-  }
+  },
+  materials_list: [],
+  mother_materials_list: [],
+  services_list: [],
+  mother_services_list: []
 };
 defaultSeller: Seller = {
   id: 0,
@@ -82,4 +86,16 @@ changeCategory(category: Category): void{
   this.seller.next(seller);
  }
 constructor() { }
+
+changeImagesTypeOfAModel(model): any {
+  model.images = model.images.toString().split(',');
+  return model;
+}
+
+changeImagesTypeOfListOfModels(models): any {
+  for (const model of models) {
+    model.images = model.images.toString().split(',');
+  }
+  return models;
+}
 }

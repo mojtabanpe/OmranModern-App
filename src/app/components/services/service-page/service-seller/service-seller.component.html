@@ -207,14 +207,14 @@
       </div> -->
       
       <div class="seller-service row" *ngFor="let sellerService of sellerServices">
-        <img [src]="sellerService.service.image" class="col-3"> <!--image -->
+        <img [src]="sellerService.service.images[0]" class="col-3 service-image"> <!--image -->
         <div class="col-9 d-flex flex-column text-secondary"> <!--samate chap-->
           <div class="d-flex justify-content-between"> <!--balayi-->
             <div class="d-flex flex-column">
               <p>{{sellerService.service.name}}</p>
               <div class="d-flex align-items-center">
                 <mat-icon class="text-warning">star</mat-icon>
-                <p class="mb-0">{{sellerService.service_rate|persianNumber}}</p>
+                <p class="mb-0">{{sellerService.stars.average|persianNumber}}</p>
               </div>    
             </div>
             <div class="d-flex align-items-center text-secondary">
@@ -228,12 +228,13 @@
             
           </div>
           <div class="d-flex justify-content-between section-gray position-relative"> <!--payini-->
-            <img class="seller-image" [src]="sellerService.image">
+            <div *ngIf="sellerService.is_suggested" class="suggest">پیشنهاد عمران مدرن</div>
+            <img class="seller-image" [src]="sellerService.seller.image">
             <div class="d-flex flex-column">
-              <p>{{sellerService.name}}</p>
+              <p>{{sellerService.seller.name}}</p>
               <div class="d-flex align-items-center">
                 <mat-icon class="text-warning">star</mat-icon>
-                <p class="mb-0">{{sellerService.rate|persianNumber}}</p>
+                <p class="mb-0">{{sellerService.seller.stars.average|persianNumber}}</p>
               </div>    
             </div>
             <div class="d-flex flex-column">
@@ -243,7 +244,7 @@
               </div> 
               <div class="d-flex align-items-center">
                 <mat-icon class="text-info">pin</mat-icon>
-                <p class="mb-0">{{sellerService.addresses[0].city}}-{{sellerService.addresses[0]?.zone}}</p>
+                <p class="mb-0">{{sellerService.seller.addresses[0].city}}-{{sellerService.seller.addresses[0]?.zone}}</p>
               </div> 
             </div>
             <div class="d-flex flex-column">
@@ -253,8 +254,7 @@
               </div>
               <div class="d-flex ml-2">
                 <p class="ml-1">آخرین بروزرسانی: </p>
-                <!-- <p>{{sellerService.prices[0].last_update}}</p> -->
-                <p>دیروز</p>
+                <p>{{sellerService?.prices[0].last_update| dayPast| persianNumber}}</p>
               </div>
               <div class="disscounts">
                 تخفیف ۵ درصد

@@ -1,7 +1,6 @@
 <div *ngIf="initialized">
     <app-material-intro [motherMaterial]="motherMaterial" [minPrice]="minPrice" [maxPrice]="maxPrice" [sellersCount]="sellerMaterials?.length"></app-material-intro>
-    <!-- <app-material-sell></app-material-sell> -->
     <app-material-seller [sellerMaterials]="sellerMaterials"></app-material-seller>
-    <app-material-details></app-material-details>
+    <app-material-details [comments]="motherMaterial.comments" [explain]="motherMaterial.explain" [material]="motherMaterial"></app-material-details>
 </div>
 

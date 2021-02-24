@@ -60,10 +60,27 @@ td > * {
 .mat-icon {
   font-size: 20px;
 }
+
+.material-image {
+  height: 12rem;
+}
+
 .seller-image {
   width: 70px;
   height: 70px;
   border-radius: 50%;
+}
+.suggest {
+  position: absolute;
+  top: 38%;
+  right: -3rem;
+  width: 6rem;
+  height: 1.3rem;
+  font-size: 11px;
+  background: red;
+  color: white;
+  transform: rotate(90deg);
+  text-align: center !important;
 }
 .disscounts {
   width: 70px;

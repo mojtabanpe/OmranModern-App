@@ -1,3 +1,5 @@
+import { DayPastPipe } from './../pipes/day-past.pipe';
+import { PersianDatePipe } from './../pipes/persian-date.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -39,12 +41,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   declarations: [
     SharedComponent,
     TrueFalsePipe,
     PersianNumberPipe,
+    PersianDatePipe,
+    DayPastPipe,
     HtmlToPlaintextPipe
   ],
   exports: [
@@ -53,7 +57,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     TrueFalsePipe,
     PersianNumberPipe,
+    PersianDatePipe,
     HtmlToPlaintextPipe,
+    DayPastPipe,
     MatCheckboxModule,
     MatSelectModule,
     MatFormFieldModule,
@@ -67,8 +73,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatListModule,
     MatRippleModule,
-    MatDialogModule
-
+    MatDialogModule,
   ]
 })
 export class SharedModule { }

@@ -1,3 +1,4 @@
+import { GeneralService } from './../../../../services/general.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class WorkSamplesComponent implements OnInit {
   @Input() workSamples;
-  constructor() { }
+  constructor(private general: GeneralService) { }
 
   ngOnInit(): void {
+    this.general.changeImagesTypeOfListOfModels(this.workSamples);
   }
 
 }

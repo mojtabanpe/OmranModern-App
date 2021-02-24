@@ -10,12 +10,14 @@ import { RepositoryService } from '../../../services/repository.service';
 })
 export class SellerPageComponent implements OnInit {
   seller: Seller;
+  initialized = false;
   constructor(private activatedRoute: ActivatedRoute, private repository: RepositoryService) { }
 
   ngOnInit(): void {
     const slug = this.activatedRoute.snapshot.paramMap.get('slug');
     this.repository.getSellerBySlug(slug).subscribe(res => {
       this.seller = res;
+      this.initialized = true;
     });
   }
 

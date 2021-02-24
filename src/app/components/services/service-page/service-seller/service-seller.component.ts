@@ -18,6 +18,9 @@ export class ServiceSellerComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    for (const sellerService of this.sellerServices) {
+      sellerService.service.images = sellerService.service.images.toString().split(',');
+    }
     console.log(this.sellerServices);
     
   }

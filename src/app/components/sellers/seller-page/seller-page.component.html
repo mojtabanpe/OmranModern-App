@@ -1,4 +1,4 @@
-<div class="page-container">
+<div *ngIf="initialized">
   <app-seller-intro [seller]="seller" *ngIf="seller"></app-seller-intro>
   <app-seller-products [seller]="seller" *ngIf="seller"></app-seller-products>
   <app-work-samples [workSamples]="seller.work_samples" *ngIf="seller"></app-work-samples>
