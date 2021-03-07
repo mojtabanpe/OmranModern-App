@@ -21,6 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 
 
@@ -42,6 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSelectModule,
     MatCheckboxModule,
     MatDialogModule,
+    CKEditorModule
   ],
   declarations: [
     SharedComponent,
@@ -74,6 +77,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatListModule,
     MatRippleModule,
     MatDialogModule,
+    CKEditorModule
   ]
 })
 export class SharedModule { }

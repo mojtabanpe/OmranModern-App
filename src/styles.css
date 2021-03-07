@@ -1,4 +1,4 @@
-@import url(fontiran.css);
+/* @import url(fontiran.css); */
 
 app-root {
   display: flex;
@@ -30,9 +30,12 @@ app-root {
 }
 
 *:not(button){
-  font-family: IRANSans !important;
-  direction: rtl !important;
-  text-align: right !important;
+  font-family: IRANSans;
+  direction: rtl;
+  text-align: right;
+}
+h3 {
+  font-family: 'IRANSans';
 }
 a {
   cursor: pointer !important;
@@ -43,10 +46,14 @@ a:hover  {
 p {
   text-align: justify !important;
 }
+
 body {
   background-color: #f1f4f6 !important;
-  direction: rtl !important;
-  text-align: right !important;
+  direction: rtl;
+  text-align: right;
+  font-family: IRANSans;
+}
+#explain *{
   font-family: IRANSans !important;
 }
 
