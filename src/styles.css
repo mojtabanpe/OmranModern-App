@@ -35,7 +35,7 @@ app-root {
   text-align: right;
 }
 h3 {
-  font-family: 'IRANSans';
+  font-family: 'IRANSans' !important;
 }
 a {
   cursor: pointer !important;

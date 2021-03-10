@@ -1,4 +1,3 @@
-import { UploadService } from './../../../OmranModern-Admin/src/app/services/upload.service';
 import { PersianCalendarService } from './services/persian-calendar.service';
 import { PersianNumberPipe } from './pipes/persian-number.pipe';
 import { RepositoryService } from './services/repository.service';
@@ -132,7 +131,7 @@ import { registerLocaleData } from '@angular/common';
     MatMenuModule,
     NgPersianDatepickerModule
   ],
-  providers: [GeneralService, AuthService, RepositoryService, UploadService, CookieService, PersianNumberPipe, PersianCalendarService,
+  providers: [GeneralService, AuthService, RepositoryService, CookieService, PersianNumberPipe, PersianCalendarService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
